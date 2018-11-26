@@ -3,43 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource locator}}"
-             Title="Login">
+             Title="Lands">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout
-            Padding="10,20,10,5">
-                <Label
-                FontAttributes="Bold"
-                FontSize="Large"
-                HorizontalOptions="Center"
-                TextColor="White"
-                Text="LANDS"
-                >
-                </Label>
-                <Image 
+        <StackLayout
+            Padding="8">
+             <Image 
                 Source="Onu"
                 WidthRequest="200">
-                </Image>
+             </Image>
             <Grid
-               Margin="0,20"
-                Padding="0,5,1,3">
-
+                Margin="10,2"   
+                HorizontalOptions="FillAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <Label
+         <Label
              VerticalOptions="Center"
-             HorizontalOptions="StartAndExpand"
              Grid.Row="0"
              Grid.Column="0"
              TextColor="Black"
-             Font="20"
              Text="E-mail">
-            </Label>
+         </Label>
                     
         <Entry
-            HorizontalOptions="Fill"
             Grid.Row="0"
             Grid.Column="1"
             BackgroundColor="WhiteSmoke"    
@@ -49,18 +36,15 @@
         </Entry>
 
         <Label
-             VerticalOptions="Center"
-             HorizontalOptions="StartAndExpand"   
-             Grid.Row="1"
-             Grid.Column="0"
-             TextColor="Black"
-             Font="20"             
-             Text="Password">
+            VerticalOptions="Center"               
+            Grid.Row="1"
+            Grid.Column="0"
+            TextColor="Black"
+            Text="Password">
        </Label>
 
         <Entry
-            FontSize="15"
-            HorizontalOptions="Fill"   
+                           
             Grid.Row="1"
             Grid.Column="1"
             BackgroundColor="WhiteSmoke"    
@@ -68,66 +52,76 @@
             PlaceholderColor="Black"
             Placeholder="Ingrese su Password.....">
          </Entry>
+    </Grid>
+            <ActivityIndicator>
+                
+            </ActivityIndicator>
 
-                </Grid>
+            <StackLayout
+            Margin="10,0"
+          Orientation="Horizontal">
 
-
-        <StackLayout
-                 Orientation="Horizontal">
-            <Label                
-                 Font="15"
-                 HorizontalOptions="StartAndExpand"
+                <Label                
                  VerticalOptions="Center"
-                 Text="Remenber me in this device">
+                    HorizontalOptions="FillAndExpand"
+                 Text="Remenber me on this device">
             </Label>
 
             <Switch          
-              HorizontalOptions="Center">
+              HorizontalOptions="End">
             </Switch>
-
+                
         </StackLayout>
+            <Label
+                    HorizontalOptions="Center" 
+                    TextColor="Blue"
+                    Text="Forgot your Password" >
+
+            </Label>
 
         <StackLayout
-                Margin="45,0">
+            Orientation="Horizontal">
             <Button
                 BackgroundColor="Navy"
                 BorderWidth="1"
                 BorderRadius="23"
                 HeightRequest="46"
-                FontSize="Default"
                 TextColor="WhiteSmoke"
-                Text="Login">
-                    </Button>
-
-                    <Button
+                Text="Login"
+                HorizontalOptions="FillAndExpand">
+            </Button>
+            <Button
                 BackgroundColor="Sienna"
                 BorderWidth="1"
                 BorderRadius="23"
                 HeightRequest="46"
-                FontSize="Default"
                 TextColor="WhiteSmoke"
-                Text="Register">
-                    </Button>
-                </StackLayout>
+                Text="Register"
+                HorizontalOptions="FillAndExpand">
+            </Button>
+        </StackLayout>
 
-                <StackLayout
-                Margin="10,0"
-                Orientation="Horizontal"
-                HorizontalOptions="CenterAndExpand">
-                    <Image
-                    Source="facebook_logo"
-                    WidthRequest="100">
-                    </Image>
-                    <Image
-                    Source="twitter_logo"
-                    WidthRequest="100">
-                    </Image>
+        <StackLayout
+            Orientation="Horizontal"
+            VerticalOptions="EndAndExpand">
+                <Image
+                    Source="facebook_logo3"
+                    WidthRequest="100"
+                    HorizontalOptions="FillAndExpand">
+                </Image>
+                <Image
+                    Source="twitter_logo3"
+                    WidthRequest="71"
+                    HorizontalOptions="FillAndExpand">                    
+                </Image>
+             <Image
+               Source="Instagram_logo1"
+                 WidthRequest="100"
+               HorizontalOptions="FillAndExpand">
+             </Image>
 
-                    <Image>
-                    </Image>
-
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>  
-      </ContentPage.Content>
+        </StackLayout>
+    </StackLayout>
+        
+    </ContentPage.Content>
 </ContentPage>
