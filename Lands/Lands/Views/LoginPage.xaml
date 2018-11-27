@@ -5,7 +5,10 @@
              BindingContext="{Binding Main, Source={StaticResource locator}}"
              Title="Lands">
     <ContentPage.Content>
-        <StackLayout
+        <ScrollView
+            BindingContext="{Binding Login}">
+            
+            <StackLayout
             Padding="5">
              <Image 
                 Source="Onu"
@@ -36,7 +39,8 @@
             BackgroundColor="WhiteSmoke"    
             Keyboard="Email"
             PlaceholderColor="Black"
-            Placeholder="Ingrese su E-mail.....">
+            Placeholder="Ingrese su E-mail....."
+            Text="{Binding Email, Mode=TwoWay}">
         </Entry>
 
         <Label
@@ -54,11 +58,12 @@
             BackgroundColor="WhiteSmoke"    
             IsPassword="True"                
             PlaceholderColor="Black"
-            Placeholder="Ingrese su Password.....">
+            Placeholder="Ingrese su Password....."
+            Text="{Binding Password, Mode=TwoWay}">
          </Entry>
     </Grid>
-            <ActivityIndicator>
-                
+            <ActivityIndicator
+               IsRunning="{Binding IsRunning, Mode=TwoWay}">
             </ActivityIndicator>
 
             <StackLayout
@@ -73,7 +78,8 @@
 
                 </Label>
                 <Switch          
-             HorizontalOptions="End">
+             HorizontalOptions="End"
+                    IsToggled="{Binding IsRemenbered, Mode=TwoWay}">
                 </Switch>
                 
         </StackLayout>
@@ -96,7 +102,8 @@
                 BorderRadius="23"
                 HeightRequest="46"
                 TextColor="WhiteSmoke"
-                Text="Login">
+                Text="Login"
+                Command="{Binding LoginCommand}"    >
                 
             </Button>
             <Button
@@ -132,6 +139,8 @@
 
         </StackLayout>
     </StackLayout>
-        
+            
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>
