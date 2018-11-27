@@ -1,9 +1,11 @@
 ﻿
 namespace Lands.ViewModels
 {
+    using GalaSoft.MvvmLight.Command;
+    using System;
     using System.Windows.Input;
 
-   public class LoginViewModels
+    public class LoginViewModels
     {
          
         #region Properties
@@ -23,10 +25,21 @@ namespace Lands.ViewModels
 
         #region Commands
 
-        public ICommand LoginCommand { get; set; }     
+        public ICommand LoginCommand
+        {
+            get
+            {
+                return new RelayCommand(Login);
+            }   
+         }
+
+        private void Login()
+        {
+            
+        }
 
         #endregion
-   }
+    }
 
     
 }
