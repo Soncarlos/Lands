@@ -6,24 +6,28 @@
              Title="Lands">
     <ContentPage.Content>
         <StackLayout
-            Padding="8">
+            Padding="5">
              <Image 
                 Source="Onu"
                 WidthRequest="200">
              </Image>
             <Grid
-                Margin="10,2"   
-                HorizontalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
+            Margin="10,0"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="*"/>
+                     <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+               
          <Label
-             VerticalOptions="Center"
+             VerticalTextAlignment="Center"
              Grid.Row="0"
              Grid.Column="0"
              TextColor="Black"
-             Text="E-mail">
+             Font="20"
+             Text="E-mail"
+             >
          </Label>
                     
         <Entry
@@ -36,15 +40,15 @@
         </Entry>
 
         <Label
-            VerticalOptions="Center"               
+            VerticalTextAlignment="Center"
+            Font="20"
             Grid.Row="1"
             Grid.Column="0"
             TextColor="Black"
             Text="Password">
        </Label>
 
-        <Entry
-                           
+        <Entry                           
             Grid.Row="1"
             Grid.Column="1"
             BackgroundColor="WhiteSmoke"    
@@ -58,66 +62,72 @@
             </ActivityIndicator>
 
             <StackLayout
-            Margin="10,0"
-          Orientation="Horizontal">
-
-                <Label                
-                 VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
+             Margin="10,0"
+             Orientation="Horizontal"
+             VerticalOptions="CenterAndExpand">
+                <Label
+                 HorizontalOptions="StartAndExpand"
+                 VerticalTextAlignment="Center"
+                 Font="15"
                  Text="Remenber me on this device">
-            </Label>
 
-            <Switch          
-              HorizontalOptions="End">
-            </Switch>
+                </Label>
+                <Switch          
+             HorizontalOptions="End">
+                </Switch>
                 
         </StackLayout>
             <Label
-                    HorizontalOptions="Center" 
-                    TextColor="Blue"
-                    Text="Forgot your Password" >
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="Center"
+               TextColor="Blue"
+               Text="Forgot your Password">
 
             </Label>
 
-        <StackLayout
-            Orientation="Horizontal">
-            <Button
+            <StackLayout
+            Margin="40,0"
+            Orientation="Horizontal"
+            VerticalOptions="CenterAndExpand">
+                <Button
+                HorizontalOptions="FillAndExpand"  
                 BackgroundColor="Navy"
                 BorderWidth="1"
                 BorderRadius="23"
                 HeightRequest="46"
                 TextColor="WhiteSmoke"
-                Text="Login"
-                HorizontalOptions="FillAndExpand">
+                Text="Login">
+                
             </Button>
             <Button
+                HorizontalOptions="FillAndExpand"
                 BackgroundColor="Sienna"
                 BorderWidth="1"
                 BorderRadius="23"
                 HeightRequest="46"
                 TextColor="WhiteSmoke"
-                Text="Register"
-                HorizontalOptions="FillAndExpand">
+                Text="Register">
+                
             </Button>
         </StackLayout>
 
         <StackLayout
+           
+            HorizontalOptions="CenterAndExpand"
             Orientation="Horizontal"
             VerticalOptions="EndAndExpand">
                 <Image
                     Source="facebook_logo3"
-                    WidthRequest="100"
-                    HorizontalOptions="FillAndExpand">
+                    WidthRequest="100">
                 </Image>
                 <Image
                     Source="twitter_logo3"
-                    WidthRequest="71"
-                    HorizontalOptions="FillAndExpand">                    
+                    WidthRequest="90">                    
                 </Image>
              <Image
                Source="Instagram_logo1"
                  WidthRequest="100"
-               HorizontalOptions="FillAndExpand">
+               >
              </Image>
 
         </StackLayout>
