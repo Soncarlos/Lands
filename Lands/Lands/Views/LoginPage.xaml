@@ -103,7 +103,8 @@
                 HeightRequest="46"
                 TextColor="WhiteSmoke"
                 Text="Login"
-                Command="{Binding LoginCommand}"    >
+                Command="{Binding LoginCommand}"
+                IsEnabled="{Binding IsEnabled , Mode=TwoWay}">
                 
             </Button>
             <Button
@@ -113,8 +114,10 @@
                 BorderRadius="23"
                 HeightRequest="46"
                 TextColor="WhiteSmoke"
-                Text="Register">
-                
+                Text="Register"
+                Command="{Binding LoginCommand}" 
+                IsEnabled="{Binding IsEnabled , Mode=TwoWay}">
+                             
             </Button>
         </StackLayout>
 
