@@ -114,9 +114,8 @@
                 BorderRadius="23"
                 HeightRequest="46"
                 TextColor="WhiteSmoke"
-                Text="Register"
-                Command="{Binding LoginCommand}" 
-                IsEnabled="{Binding IsEnabled , Mode=TwoWay}">
+                Text="Register">
+                <!--Command="{Binding LoginCommand}-->
                              
             </Button>
         </StackLayout>

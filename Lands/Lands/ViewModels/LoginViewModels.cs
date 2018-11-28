@@ -18,22 +18,74 @@ namespace Lands.ViewModels
 
         #region attributes
         private string password;
-        private bool isrunnig;
+        private bool isRunnig;
+        private bool isEnabled;
         #endregion
 
 
         #region Properties
         public string Email { get; set; }
-        public string Password { get; set; }
-        public bool IsRunnig { get; set; }
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+                
+            set
+            {
+            if (password != value)
+               password = value;
+            //Invoca al delegado Del evento PropertyChanged, refresca,
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
+                
+             }
+        }
+
+        public bool IsRunnig
+        {
+            // abreviacion  get => isRunnig;
+            get
+            {
+                return isRunnig;
+            }
+
+            set
+            {
+                if (isRunnig != value)
+                    isRunnig = value;
+                //Invoca al delegado Del evento PropertyChanged, refresca,
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsRunnig)));
+
+            }
+        }
+
         public bool IsRemenbered { get; set; }
-        public bool IsEnabled { get; set; }
+
+        public bool IsEnabled
+
+        {
+            get
+            {
+                return isEnabled;
+            }
+
+            set
+            {
+                if (isEnabled != value)
+                    isEnabled = value;
+                //Invoca al delegado Del evento PropertyChanged, refresca,
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsEnabled)));
+
+            }
+        }
         #endregion
 
         #region costructors
         public LoginViewModels()
         {
-            this.IsRemenbered = true;
+            IsRemenbered = true;
+            IsEnabled = true;
 
         }
         #endregion
@@ -59,8 +111,10 @@ namespace Lands.ViewModels
                     ("Error",
                     "You must enter an Email",
                     "Accept");
+                         
                 return;
             }
+
             // condicion: si el campo de Password esta vacio y se presiona el boton Login
             if (string.IsNullOrEmpty(this.Password))
             {
@@ -70,12 +124,18 @@ namespace Lands.ViewModels
                    "Accept");
                 return;
             }
+
+            IsRunnig = true;
+            isEnabled = false;
+
+            // condicion: si no coinciden con los valores descritos presiona el boton Login
             if (this.Email != "cespinoza1982@yahoo.es" || this.Password != "1234")
             {
                 await Application.Current.MainPage.DisplayAlert
                 ("Error",
                  "Email or Password Incorrect",
                  "Accept");
+
                 //Limpia el campo de Password, pero no se visualiza, se debe implementar una interfaz INotifyPropertyChanged
                 this.Password = string.Empty;
 
