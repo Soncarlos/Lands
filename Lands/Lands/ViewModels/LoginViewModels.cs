@@ -7,14 +7,15 @@ namespace Lands.ViewModels
     using Xamarin.Forms;
 
     // clase de tipo Interfaz para notificar cambios, actualizacion de componentes.
-    public class LoginViewModels : INotifyPropertyChanged
+    public class LoginViewModels : BaseViewModels
     {
         //Implementaciop de la interfaz por medion de un Evento
-        #region Events
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //#region Events
 
-        #endregion
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //#endregion
 
         #region attributes
         private string password;
@@ -25,37 +26,26 @@ namespace Lands.ViewModels
 
         #region Properties
         public string Email { get; set; }
+
         public string Password
         {
             get
-            {
-                return password;
+            { return password; }
+
+            set { SetValue(ref password, value);
+
             }
-                
-            set
-            {
-            if (password != value)
-               password = value;
-            //Invoca al delegado Del evento PropertyChanged, refresca,
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
-                
-             }
         }
 
         public bool IsRunnig
         {
             // abreviacion  get => isRunnig;
             get
-            {
-                return isRunnig;
-            }
+            { return isRunnig; }
 
             set
             {
-                if (isRunnig != value)
-                    isRunnig = value;
-                //Invoca al delegado Del evento PropertyChanged, refresca,
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsRunnig)));
+                SetValue(ref isRunnig, value);
 
             }
         }
@@ -66,16 +56,11 @@ namespace Lands.ViewModels
 
         {
             get
-            {
-                return isEnabled;
-            }
+            { return isEnabled; }
 
             set
             {
-                if (isEnabled != value)
-                    isEnabled = value;
-                //Invoca al delegado Del evento PropertyChanged, refresca,
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsEnabled)));
+                SetValue(ref isEnabled, value);
 
             }
         }
