@@ -2,9 +2,9 @@
 namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-    using System.ComponentModel;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using Views;
 
     // clase de tipo Interfaz para notificar cambios, actualizacion de componentes.
     public class LoginViewModels : BaseViewModels
@@ -18,6 +18,7 @@ namespace Lands.ViewModels
         //#endregion
 
         #region attributes
+        private string email;
         private string password;
         private bool isRunnig;
         private bool isEnabled;
@@ -25,7 +26,14 @@ namespace Lands.ViewModels
 
 
         #region Properties
-        public string Email { get; set; }
+
+        public string Email
+        {
+            get { return email; }
+
+            set { SetValue(ref email, value); }
+
+        }
 
         public string Password
         {
@@ -71,6 +79,10 @@ namespace Lands.ViewModels
         {
             IsRemenbered = true;
             IsEnabled = true;
+            Email= "cespinoza1982@yahoo.es";
+            Password = "1234";
+
+
 
         }
         #endregion
@@ -87,6 +99,9 @@ namespace Lands.ViewModels
 
 
         // metodo Asincrono
+        /// <summary>
+        /// 
+        /// </summary>
         private async void Login()
         {
             // condicion: si el campo de Email esta vacio y se presiona el boton Login
@@ -95,9 +110,9 @@ namespace Lands.ViewModels
                 await Application.Current.MainPage.DisplayAlert
                     ("Error",
                     "You must enter an Email",
-                    "Accept");
-                         
+                    "Accept");                         
                 return;
+
             }
 
             // condicion: si el campo de Password esta vacio y se presiona el boton Login
@@ -108,6 +123,7 @@ namespace Lands.ViewModels
                    "You must enter a Password",
                    "Accept");
                 return;
+
             }
 
             IsRunnig = true;
@@ -116,6 +132,9 @@ namespace Lands.ViewModels
             // condicion: si no coinciden con los valores descritos presiona el boton Login
             if (this.Email != "cespinoza1982@yahoo.es" || this.Password != "1234")
             {
+
+                IsRunnig = false;
+                isEnabled = true;
                 await Application.Current.MainPage.DisplayAlert
                 ("Error",
                  "Email or Password Incorrect",
@@ -127,8 +146,22 @@ namespace Lands.ViewModels
                 return;
 
             }
+              // envia un mensaje de exito
+                IsRunnig = false;
+               isEnabled = true;
+               //await Application.Current.MainPage.DisplayAlert
+               // ("OK",
+               //  "fuck Yeahhh",
+               //  "Accept");
 
+            Email = string.Empty;
+            Password = string.Empty;
 
+            //antes de Lanzar la nueva Lands Page, se llama al Metodo GetInstance 
+            // que esta en MainViewModel
+            //se instancia la Propiedad Lands de tipo Landsviewmodels
+            MainViewModels.GetInstance().Lands= new LandsViewModels();
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
 
         }
 

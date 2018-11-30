@@ -9,7 +9,9 @@ namespace Lands.Insfrastructure
     public class InstanceLocator
     {
         #region Property
-        public MainViewModels Main { get; set; }
+        public MainViewModels Main
+        { get; set; }
+
         #endregion
 
         #region constructors
