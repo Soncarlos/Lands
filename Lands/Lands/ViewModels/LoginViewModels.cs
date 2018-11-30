@@ -147,21 +147,21 @@ namespace Lands.ViewModels
 
             }
               // envia un mensaje de exito
-                IsRunnig = false;
+               IsRunnig = false;
                isEnabled = true;
                //await Application.Current.MainPage.DisplayAlert
                // ("OK",
                //  "fuck Yeahhh",
-               //  "Accept");
-
-            Email = string.Empty;
-            Password = string.Empty;
+               //  "Accept");            
 
             //antes de Lanzar la nueva Lands Page, se llama al Metodo GetInstance 
             // que esta en MainViewModel
             //se instancia la Propiedad Lands de tipo Landsviewmodels
             MainViewModels.GetInstance().Lands= new LandsViewModels();
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+           await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
+            Email = string.Empty;
+            Password = string.Empty;
 
         }
 
