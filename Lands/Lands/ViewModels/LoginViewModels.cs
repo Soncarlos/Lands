@@ -1,10 +1,10 @@
 ﻿
 namespace Lands.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
     using Xamarin.Forms;
     using Views;
+    using GalaSoft.MvvmLight.Command;
 
     // clase de tipo Interfaz para notificar cambios, actualizacion de componentes.
     public class LoginViewModels : BaseViewModels
