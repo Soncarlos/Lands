@@ -29,13 +29,16 @@
         #region Singleton de la MainViewModels
         // permitir llamado de la MainViewModels desde cualquier otra clase, 
         //para usar una unica MainViewModels
+
         private static MainViewModels instance;
+
         public static MainViewModels GetInstance()
         {
             if(instance==null)
             {
-                return new MainViewModels();
+                instance= new MainViewModels();
             }
+
             return instance;
         }
         #endregion
