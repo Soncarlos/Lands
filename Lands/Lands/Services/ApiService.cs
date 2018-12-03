@@ -23,16 +23,16 @@
                 };
             }
 
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(
-                "google.com");
-            if (!isReachable)
-            {
-                return new Response
-                {
-                    IsSuccess = false,
-                    Message = "Check you internet connection.",
-                };
-            }
+            //var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+
+            //if (!isReachable)
+            //{
+            //    return new Response
+            //    {
+            //        IsSuccess = false,
+            //        Message = "Check you internet connection.",
+            //    };
+            //}
 
             return new Response
             {
