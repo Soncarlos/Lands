@@ -12,24 +12,22 @@
 
     public class LandsViewModels : BaseViewModels
     {
-        
-
         #region Services
         private ApiService apiServices;
-
         #endregion
 
         #region Attibutes
         // se crea un observablecolecction porque se va a pintar en un List view
         private List<Land> LandsList;
-        private ObservableCollection<Land> lands;
+        private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
+        
 
         #endregion
 
         #region Properties
-        public ObservableCollection<Land> Lands
+        public ObservableCollection<LandItemViewModel> Lands
         {
            get { return lands; }
            set { SetValue(ref lands, value); }
@@ -62,35 +60,30 @@
             apiServices = new ApiService();
             LoadLands();
         }
+
+        
         #endregion
 
-        #region Methods
-        // 
+        #region LoadLands Method
         private async void  LoadLands()
         {
-
             IsRefreshing = true;
             ////Se verifica la conexion a internet, SI ESTA ENCENDIDO EL WIFI O LOS DATOS
             var connection = await apiServices.CheckConnection();
-            if (!connection.IsSuccess)
-            {
+             if (!connection.IsSuccess)
+             {
                await Application.Current.MainPage.DisplayAlert
                      ("Error",
                       connection.Message,
                       "Accept");
-                
-                // como no hay conexion a internet, se regresa a la pagina anterior
+               // como no hay conexion a internet, se regresa a la pagina anterior
                 await Application.Current.MainPage.Navigation.PopAsync();
                 IsRefreshing = false;
                 return;
-                
-            }
-            
-            ////Se verifica la conexion a internet, SI HAY SALIDA A INTERNET
-            
-            //--------------------------------------------------------------
+             }
+          ////Se verifica la conexion a internet, SI HAY SALIDA A INTERNET aun no implementada
 
-
+            
             var response = await apiServices.GetList<Land>
                 ("http://www.restcountries.eu",
                 "/rest",
@@ -106,47 +99,66 @@
                 
             }
             // Se castea la lista resultante al modelo Land
-
             LandsList = (List<Land>)response.Result;
-
-            Lands = new ObservableCollection<Land>(LandsList);
+            Lands = new ObservableCollection<LandItemViewModel>(ToLandItemViewModel());
             IsRefreshing = false;
-
 
         }
         #endregion
-
-        #region Commands
-        public ICommand RefreshCommand
+        
+        #region ToLandItemViewModel Methods
+        private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            get
+            return LandsList.Select(l => new LandItemViewModel
             {
-                return new RelayCommand(LoadLands);
-
-            }
+                Alpha2Code = l.Alpha2Code,
+                Alpha3Code = l.Alpha3Code,
+                AltSpellings = l.AltSpellings,
+                Area = l.Area,
+                Borders = l.Borders,
+                CallingCodes = l.CallingCodes,
+                Capital = l.Capital,
+                Cioc = l.Cioc,
+                Currencies = l.Currencies,
+                Demonym = l.Demonym,
+                Flag = l.Flag,
+                Gini = l.Gini,
+                Languages = l.Languages,
+                Latlng = l.Latlng,
+                Name = l.Name,
+                NativeName = l.NativeName,
+                NumericCode = l.NumericCode,
+                Population = l.Population,
+                Region = l.Region,
+                RegionalBlocs = l.RegionalBlocs,
+                Subregion = l.Subregion,
+                Timezones = l.Timezones,
+                TopLevelDomain = l.TopLevelDomain,
+                Translations = l.Translations,
+            });
         }
+        #endregion
 
-        public ICommand SearchCommmad
-        {
-            get
-            {
-                return new RelayCommand(Search);
-            }
-        }
+        #region Search Method
 
         private void Search()
         {
             if(string.IsNullOrEmpty(Filter))
             {
-                Lands = new ObservableCollection<Land>(LandsList); 
+                Lands = new ObservableCollection<LandItemViewModel>(ToLandItemViewModel()); 
             }
             else
             {
-                Lands = new ObservableCollection<Land>(LandsList.Where(l => l.Name.ToLower().Contains(Filter.ToLower()) ||
+                Lands = new ObservableCollection<LandItemViewModel>(ToLandItemViewModel().Where(l => l.Name.ToLower().Contains(Filter.ToLower()) ||
                  l.Capital.ToLower().Contains(Filter.ToLower())));
             }
         }
         #endregion
 
+        #region Commands
+        public ICommand RefreshCommand => new RelayCommand(LoadLands);
+        public ICommand SearchCommmad => new RelayCommand(Search);
+
+        #endregion
     }
 }

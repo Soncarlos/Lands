@@ -69,7 +69,7 @@ namespace Lands.Models
         public List<Language> Languages { get; set; }
 
         [JsonProperty(PropertyName = "translations")]
-        public Land Translations { get; set; }
+        public Translations Translations { get; set; }
 
         [JsonProperty(PropertyName = "flag")]
         public string Flag { get; set; }
