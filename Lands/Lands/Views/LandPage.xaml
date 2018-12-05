@@ -44,9 +44,9 @@
                         Grid.Column="1"
                         Grid.Row="1"
                         FontAttributes="Bold"
-                        Text="{Binding Land.Population, StringFormat='0,N0'}"
-                        TextColor="Black">
-                    </Label>
+                        TextColor="Black"
+                        Text="{Binding Land.Population,StringFormat=' {0:N0}'}">
+                    </Label>                               
                     <Label
                         Grid.Column="0"
                         Grid.Row="2"
@@ -57,7 +57,7 @@
                         Grid.Column="1"
                         Grid.Row="2"
                         FontAttributes="Bold"
-                        Text="{Binding Land.Area, StringFormat=0:N0}"
+                        Text="{Binding Land.Area,StringFormat=' {0:N0}'}"
                         TextColor="Black">
                     </Label>
                     <Label
@@ -135,7 +135,7 @@
                         Grid.Column="1"
                         Grid.Row="8"
                         FontAttributes="Bold"
-                        Text="{Binding Land.Gini, StringFormat='0:N2'}"
+                        Text="{Binding Land.Gini,StringFormat=' {0:N2}'}"
                         TextColor="Black">
                     </Label>
                     <Label
