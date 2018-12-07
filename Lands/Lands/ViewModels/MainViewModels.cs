@@ -1,8 +1,16 @@
 ﻿namespace Lands.ViewModels
 {
+    using Lands.Models;
+    using System.Collections.Generic;
     public class MainViewModels
     {
-        
+        #region Properties
+        // Se crea como propiedad en la MainViewModels, para poder usar la lista, desde cualquier
+        //lado de la aplicacion
+        public List<Land> LandsList { get; set; }
+
+        #endregion
+
         #region ViewModels
         public LoginViewModels Login
         { get;

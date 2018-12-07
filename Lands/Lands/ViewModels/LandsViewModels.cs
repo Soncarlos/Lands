@@ -18,7 +18,6 @@
 
         #region Attibutes
         // se crea un observablecolecction porque se va a pintar en un List view
-        private List<Land> LandsList;
         private ObservableCollection<LandItemViewModel> lands;
         private bool isRefreshing;
         private string filter;
@@ -99,7 +98,7 @@
                 
             }
             // Se castea la lista resultante al modelo Land
-            LandsList = (List<Land>)response.Result;
+            MainViewModels.GetInstance().LandsList = (List<Land>)response.Result;
             Lands = new ObservableCollection<LandItemViewModel>(ToLandItemViewModel());
             IsRefreshing = false;
 
@@ -109,7 +108,7 @@
         #region ToLandItemViewModel Methods
         private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            return LandsList.Select(l => new LandItemViewModel
+            return MainViewModels.GetInstance().LandsList.Select(l => new LandItemViewModel
             {
                 Alpha2Code = l.Alpha2Code,
                 Alpha3Code = l.Alpha3Code,
