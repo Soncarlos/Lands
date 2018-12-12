@@ -11,6 +11,8 @@
         #region Attributes 
         // atributo para que trabaje con el modelo Border
         private ObservableCollection<Border> border;
+        private ObservableCollection<Currency> currencies;
+        
 
         #endregion
 
@@ -22,7 +24,12 @@
          get;
          set;
         }
-
+       
+        public ObservableCollection <Currency> Currencies
+        {
+            get{ return currencies; }
+            set{ SetValue(ref currencies, value);}
+        }
         public ObservableCollection<Border> Borders
         {
             get { return border; }
@@ -36,8 +43,10 @@
 
         public LandViewModel(Land land)
         {
-          this.Land = land;
-          this.LoadBorders();
+          Land = land;
+          LoadBorders();
+          Currencies = new ObservableCollection<Currency>(Land.Currencies);
+          
 
         }
         #endregion
@@ -45,10 +54,11 @@
         private void LoadBorders()
         {
             this.Borders = new ObservableCollection<Border>();
+
             foreach (string border in this.Land.Borders)
             {
                 var land = MainViewModels.GetInstance().LandsList.
-                                        Where(l => l.Alpha3Code ==border).
+                                        Where(l => l.Alpha3Code==border).
                                         FirstOrDefault();
                 if (land != null)
                 {

@@ -8,11 +8,16 @@
     Title="Land">
     
     <TabbedPage.Children>
-        <tabs:LandPage/>
+        <tabs:LandPage
+            Icon="ic_information.png"
+            Title="GENERAL"/>
         <tabs:BordersPage/>
-        <tabs:CurrenciesPage/>
+        <tabs:CurrenciesPage
+            Icon="ic_money.png"
+            Title="MONEDA"/>
         <tabs:TranslationsPage/>
-        <tabs:LanguagePage/>
+        <tabs:LanguagePage
+            Icon="ic_info_language.png"/>
     </TabbedPage.Children>
     
     

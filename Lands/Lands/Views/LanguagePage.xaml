@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.LanguagePage"
              BindingContext="{Binding Main, Source={StaticResource locator}}"
-             Icon="ic_Translate"
              Title="Language">
     <ContentPage.Content>
         <StackLayout>

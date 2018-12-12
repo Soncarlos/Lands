@@ -2502,10 +2502,10 @@ namespace Lands.Droid
 			public const int ic_group_expand_15 = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int ic_info_Information = 2130837635;
+			public const int ic_info_language = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int ic_info_language = 2130837636;
+			public const int ic_information = 2130837636;
 			
 			// aapt resource value: 0x7f020085
 			public const int ic_launcher = 2130837637;
