@@ -12,6 +12,7 @@
         // atributo para que trabaje con el modelo Border
         private ObservableCollection<Border> border;
         private ObservableCollection<Currency> currencies;
+        private ObservableCollection<Language> languages;
         
 
         #endregion
@@ -24,7 +25,13 @@
          get;
          set;
         }
-       
+
+        public ObservableCollection<Language> Languages
+        {
+            get { return languages; }
+            set { SetValue(ref languages, value); }
+        }
+
         public ObservableCollection <Currency> Currencies
         {
             get{ return currencies; }
@@ -46,6 +53,7 @@
           Land = land;
           LoadBorders();
           Currencies = new ObservableCollection<Currency>(Land.Currencies);
+          Languages = new ObservableCollection<Language>(Land.Languages);
           
 
         }

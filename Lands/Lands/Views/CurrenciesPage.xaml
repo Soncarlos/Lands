@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.CurrenciesPage"
              BindingContext="{Binding Main, Source={StaticResource locator}}"
+             Icon="ic_money.png"
              Title="Currencies">
     
     <ContentPage.Content>
@@ -48,6 +49,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.BordersPage"
              BindingContext="{Binding Main, Source={StaticResource locator}}"
-             Icon="web_hi_res_512"
+             Icon="ic_borders.png"
              Title="Borders">
     <ContentPage.Content>
         <StackLayout

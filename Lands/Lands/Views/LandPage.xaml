@@ -3,18 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.LandPage"
              BindingContext="{Binding Main, Source={StaticResource locator}}"
-             >
-     <ContentPage.Content>
+             Icon="ic_information.png"
+             Title="INFO">
+    <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Land}">
-        <StackLayout
+            <StackLayout
             Padding="5">
                 <Label
                     FontSize="Large"
                     FontAttributes="Bold"
                     Text="{Binding Land.Name}"
                     TextColor="Black">
-                    
+
                 </Label>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -46,7 +47,7 @@
                         FontAttributes="Bold"
                         TextColor="Black"
                         Text="{Binding Land.Population,StringFormat=' {0:N0}'}">
-                    </Label>                               
+                    </Label>
                     <Label
                         Grid.Column="0"
                         Grid.Row="2"
@@ -178,7 +179,6 @@
                         TextColor="Black">
                     </Label>
                 </Grid>
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
