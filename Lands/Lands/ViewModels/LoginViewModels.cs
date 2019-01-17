@@ -5,17 +5,22 @@ namespace Lands.ViewModels
     using Xamarin.Forms;
     using Views;
     using GalaSoft.MvvmLight.Command;
+    using Lands.Services;
+    using Lands.Models;
 
     // clase de tipo Interfaz para notificar cambios, actualizacion de componentes.
     public class LoginViewModels : BaseViewModels
     {
-        //Implementaciop de la interfaz por medion de un Evento
+        //Implementaciop de la interfaz por medio de un Evento
 
         //#region Events
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
         //#endregion
+        #region Services
+        private ApiService apiservices;
+        #endregion
 
         #region attributes
         private string email;
@@ -26,6 +31,8 @@ namespace Lands.ViewModels
 
 
         #region Properties
+
+        
 
         public string Email
         {
@@ -63,26 +70,20 @@ namespace Lands.ViewModels
         public bool IsEnabled
 
         {
-            get
-            { return isEnabled; }
+           get{ return isEnabled; }
 
-            set
-            {
-                SetValue(ref isEnabled, value);
-
-            }
+            set{ SetValue(ref isEnabled, value); }
         }
         #endregion
 
         #region costructors
         public LoginViewModels()
         {
+            apiservices = new ApiService();
             IsRemenbered = true;
             IsEnabled = true;
-            Email= "cespinoza1982@yahoo.es";
-            Password = "1234";
-
-
+            Email = "cespinoza1982@yahoo.es";
+            Password = "123456";
 
         }
         #endregion
@@ -96,17 +97,16 @@ namespace Lands.ViewModels
                 return new RelayCommand(Login);
             }
         }
-
-
-        // metodo Asincrono
-        /// <summary>
-        /// 
-        /// </summary>
+        #endregion
+        #region Methods
+        
         private async void Login()
         {
             // condicion: si el campo de Email esta vacio y se presiona el boton Login
             if (string.IsNullOrEmpty(this.Email))
             {
+                IsRunnig = false;
+                isEnabled = true;
                 await Application.Current.MainPage.DisplayAlert
                     ("Error",
                     "You must enter an Email",
@@ -118,6 +118,8 @@ namespace Lands.ViewModels
             // condicion: si el campo de Password esta vacio y se presiona el boton Login
             if (string.IsNullOrEmpty(this.Password))
             {
+                IsRunnig = false;
+                isEnabled = true;
                 await Application.Current.MainPage.DisplayAlert
                   ("Error",
                    "You must enter a Password",
@@ -125,48 +127,71 @@ namespace Lands.ViewModels
                 return;
 
             }
-
             IsRunnig = true;
             isEnabled = false;
 
-            // condicion: si no coinciden con los valores descritos presiona el boton Login
-            if (this.Email != "cespinoza1982@yahoo.es" || this.Password != "1234")
+            var connection = await apiservices.CheckConnection();
+            if(!connection.IsSuccess)
             {
-
                 IsRunnig = false;
                 isEnabled = true;
                 await Application.Current.MainPage.DisplayAlert
-                ("Error",
-                 "Email or Password Incorrect",
-                 "Accept");
-
-                //Limpia el campo de Password, pero no se visualiza, se debe implementar una interfaz INotifyPropertyChanged
-                this.Password = string.Empty;
-
+                 ("Error",
+                  connection.Message,
+                  "Accept");
                 return;
-
             }
-              // envia un mensaje de exito
-               IsRunnig = false;
-               isEnabled = true;
-               //await Application.Current.MainPage.DisplayAlert
-               // ("OK",
-               //  "fuck Yeahhh",
-               //  "Accept");            
+
+            var token = await apiservices.GetToken
+                ("http://169.254.80.80:8020/",
+                Email,
+                Password);
+
+            if(token==null)
+            {
+                IsRunnig = false;
+                isEnabled = true;
+                await Application.Current.MainPage.DisplayAlert
+                                 ("Error",
+                                  "Algo salio mal, intentelo mas tarde",
+                                  "Accept");
+                return;
+            }
+
+            if(string.IsNullOrEmpty(token.AccessToken))
+            {
+                IsRunnig = false;
+                isEnabled = true;
+                await Application.Current.MainPage.DisplayAlert
+                                ("Error",
+                                 token.ErrorDescription,
+                                 "Accept");
+                Password = string.Empty;
+                return;
+               
+            }
 
             //antes de Lanzar la nueva Lands Page, se llama al Metodo GetInstance 
             // que esta en MainViewModel
             //se instancia la Propiedad Lands de tipo Landsviewmodels
-            MainViewModels.GetInstance().Lands= new LandsViewModels();
-           await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+            var mainViemodel = MainViewModels.GetInstance();
+            mainViemodel.Token = token;
+            mainViemodel.Lands = new LandsViewModels();
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
+            IsRunnig = false;
+            isEnabled = true;
 
             Email = string.Empty;
             Password = string.Empty;
 
+            
+
+            
         }
 
-        #endregion
+        
     }
-
+    #endregion
 
 }

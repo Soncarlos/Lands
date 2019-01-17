@@ -5,11 +5,7 @@
     {
         //
         public bool IsSuccess
-        {
-            get;
-            set;
-                       
-        }
+        {  get; set; }
         //
         public string Message
         { get;
@@ -18,10 +14,8 @@
 
         //
         public object Result
-        {
-          get;
-          set;
-        }
+        { get;  set;  }
+
     }
 
 }

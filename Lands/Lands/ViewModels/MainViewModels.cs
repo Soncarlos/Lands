@@ -8,6 +8,7 @@
         // Se crea como propiedad en la MainViewModels, para poder usar la lista, desde cualquier
         //lado de la aplicacion
         public List<Land> LandsList { get; set; }
+        public TokenResponse Token  { get; set; }
 
         #endregion
 

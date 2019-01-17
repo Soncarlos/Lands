@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>8d29c0a7-0476-46fa-b965-016b3ae9b8e2</ProjectGuid>
+    <ProjectGuid>571e0663-ea51-444c-9b42-a44a09ea123d</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lands.Domain</RootNamespace>
