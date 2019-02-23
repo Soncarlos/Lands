@@ -143,7 +143,7 @@ namespace Lands.ViewModels
             }
 
             var token = await apiservices.GetToken
-                ("http://169.254.80.80:8020",
+                ("http://127.0.0.1:56578",
                 Email,
                 Password);
 
